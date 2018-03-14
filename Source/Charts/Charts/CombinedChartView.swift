@@ -212,6 +212,9 @@ open class CombinedChartView: BarLineChartViewBase, CombinedChartDataProvider
 
     /// - returns: `true` if drawing rounded bars is enabled, `false` ifnot
     open var isDrawRoundedBarEnabled: Bool { return drawRoundedBarEnabled }
+
+    /// - returns: `CGFloat` corner radius
+    @objc open var roundedBarCornerRadius: CGFloat = 0.0
     
     // MARK: - ChartViewBase
     
