@@ -311,7 +311,13 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
 
             if dataProvider.isDrawRoundedBarEnabled
             {
-                let cornerRadius = CGSize(width: barRect.width / 2.0, height: barRect.width / 2.0)
+                let cornerRadius: CGSize
+                if dataProvider.roundedBarCornerRadius == 0.0 {
+                    cornerRadius = CGSize(width: barRect.width / 2.0, height: barRect.width / 2.0)
+                } else {
+                    cornerRadius = CGSize(width: dataProvider.roundedBarCornerRadius, height: dataProvider.roundedBarCornerRadius)
+                }
+
                 #if os(OSX)
                     let bezierPath = NSBezierPath(roundedRect: barRect, xRadius: cornerRadius.width, yRadius: cornerRadius.height)
                     context.addPath(bezierPath.cgPath)
@@ -700,7 +706,12 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 
                 if dataProvider.isDrawRoundedBarEnabled
                 {
-                    let cornerRadius = CGSize(width: barRect.width / 2.0, height: barRect.width / 2.0)
+                    let cornerRadius: CGSize
+                    if dataProvider.roundedBarCornerRadius == 0.0 {
+                        cornerRadius = CGSize(width: barRect.width / 2.0, height: barRect.width / 2.0)
+                    } else {
+                        cornerRadius = CGSize(width: dataProvider.roundedBarCornerRadius, height: dataProvider.roundedBarCornerRadius)
+                    }
                     #if os(OSX)
                         let bezierPath = NSBezierPath(roundedRect: barRect, xRadius: cornerRadius.width, yRadius: cornerRadius.height)
                         context.addPath(bezierPath.cgPath)
